@@ -5,17 +5,40 @@ var path = require('path');
 var app = express();
 app.use(morgan('combined'));
 
-var articleone = {
+var articles = {
+'article-one': {
 	title: 'Article One | Chellaperumal',
 	heading: 'Article One',
 	date: 'Aug 04 2017',
 	content:`
-<p>
+		<p>
             This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
         </p>
         <p>
             This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
-        </p>`
+        </p>`},
+'article-two': {
+	title: 'Article Two | Chellaperumal',
+	heading: 'Article Two',
+	date: 'Aug 05 2017',
+	content:`
+		<p>
+            This is the content for my Second article, though it is not big but Second start.This is the content for my Second article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
+        </p>
+        <p>
+            This is the content for my Second article, though it is not big but Second start.This is the content for my Second article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
+        </p>`},
+'article-three': {
+	title: 'Article Three | Chellaperumal',
+	heading: 'Article Three',
+	date: 'Aug 06 2017',
+	content:`
+		<p>
+            This is the content for my Third article, though it is not big but Third start.This is the content for my Third article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
+        </p>
+        <p>
+            This is the content for my Third article, though it is not big but Third start.This is the content for my Third article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
+        </p>`}
 };
 
 function crateTemplate (data){
@@ -58,25 +81,16 @@ function crateTemplate (data){
 	return htmlTemplate;
 }
 
-
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/article-one',function(req,res){
-    res.send(crateTemplate(articleone));
-    
+app.get('/:articleName', function (req, res) {
+ var articleName = req.params.articleName;
+ res.send(crateTemplate(articles[articleName]));
 });
-app.get('/article-two',function(req,res){
-    res.sendFile(path.join(__dirname, 'ui', 'article-two.html'));
-});
-
-app.get('/article-three',function(req,res){
-   res.sendFile(path.join(__dirname, 'ui', 'article-three.html'));
-    });
-
 app.get('/ui/style.css', function (req, res) {
-  res.sendFile(path.join(__dirname, 'ui', 'style.css'));
+  res.sendFile(path.join(__dirname,'ui','style.css'));
 });
 
 app.get('/ui/madi.png', function (req, res) {
