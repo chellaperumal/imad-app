@@ -5,5 +5,5 @@ element.innerHTML = 'New value to be printed';
 
 var img = document.getElementById('madi');
 img.onClick = function(){
-  img.style.marginleft = '100px';  
+  img.style.marginLeft = '100px';  
 };
