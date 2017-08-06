@@ -19,8 +19,9 @@ var button = document.getElementById("counter");
 //var counter = 0;
 button.onclick = function(){
     
-    
-var submit = document.getElementById('submit-btn');
+var nameInput = document.getElementById('name');
+    var name = nameInput.value; 
+    var submit = document.getElementById('submit-btn');
 submit.onclick = function(){
             
     
@@ -48,8 +49,7 @@ submit.onclick = function(){
     //counter = counter+1;
     //var span = document.getElementById("count");
     //span.innerHTML = counter.toString();
-    var nameInput = document.getElementById('name');
-    var name = nameInput.value;
+    
     request.open('GET','http://pondychellam.imad.hasura-app.io/submit-name?name='+name,true);
     request.send(null);
 };
