@@ -20,7 +20,7 @@ var counter = 0;
 button.onclick = function(){
     
 
-var submit = document.getElementById('submit_btn');
+/*var submit = document.getElementById('submit_btn');
 submit.onclick = function(){
             
     
@@ -43,16 +43,16 @@ submit.onclick = function(){
           }
       }
         //Not done
-    };
+    };*/
     
     counter = counter+1;
     var span = document.getElementById("count");
     span.innerHTML = counter.toString();
     
-    var nameInput = document.getElementById('name');
+   /* var nameInput = document.getElementById('name');
     var name = nameInput.value; 
     request.open('GET','http://pondychellam.imad.hasura-app.io/submit-name?name=' +name,true);
     request.send(null);
-};
+};*/
 
 };
