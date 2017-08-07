@@ -38,7 +38,7 @@ button.onclick = function(){
                 var names = request.responeText;
                 names = JSON.parse(names);
                 var list = '';
-                 for (var i=0;i<names.length;i++){
+                 for (var i=0;i< names.length; i++){
                      list += '<li>'+ names[i] + '</li>';
                  }
  
@@ -53,7 +53,7 @@ button.onclick = function(){
      
      //Make the request
 
- request.open('GET','http://pondychellam.imad.hasura-app.io/submit-name?name'+name,true);
+ request.open('GET','http://pondychellam.imad.hasura-app.io/submit-name?name'+ name,true);
  request.send(null);
  };
  
