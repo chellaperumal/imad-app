@@ -27,15 +27,18 @@ var articles = {
         </p>
         <p>
             This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
+        </p>
+        <p>
+            This is the content for my Second article, though it is not big but Second start.This is the content for my Second article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
+        
         </p>`},
+        
 'article-two': {
 	title: 'Article Two | Chellaperumal',
 	heading: 'Article Two',
 	date: 'Aug 05 2017',
 	content:`
-		<p>
-            This is the content for my Second article, though it is not big but Second start.This is the content for my Second article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
-        </p>
+		
         <p>
             This is the content for my Second article, though it is not big but Second start.This is the content for my Second article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
         </p>`},
@@ -44,11 +47,8 @@ var articles = {
 	heading: 'Article Three',
 	date: 'Aug 06 2017',
 	content:`
-		<p>
-            This is the content for my Third article, though it is not big but Third start.This is the content for my Third article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
-        </p>
-        <p>
-            This is the content for my Third article, though it is not big but Third start.This is the content for my Third article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
+	    <p>
+            To be crated by end of Aug'2017
         </p>`}
 };
 
