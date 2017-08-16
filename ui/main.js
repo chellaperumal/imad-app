@@ -12,12 +12,10 @@
             if(request.status === 200){
                 console.log('user logged in');
                 alert('Logged in Successfully');
-            }
-            else(request.status === 403){
+            } else if (request.status === 403){
                 alert('Username or Password is incorrect');
-            }
-            else(request.status === 500){
-                alert('Something went wrong on the server');
+            } else if (request.status === 500){
+                alert('Something went wrong in the server');
             }
         } 
       //Not yet done
@@ -29,6 +27,7 @@
  console.log(username);
  console.log(password);
  request.open('POST','http://pondychellam.imad.hasura-app.io/login',true);
+ request.setRequestHeader('Content-Type', 'application/json');
  request.send(JSON.stringify({username: username, password: password}));
  };
  
