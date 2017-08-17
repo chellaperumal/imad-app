@@ -98,6 +98,7 @@ function crateTemplate (data){
 		        <div>
 		        <h6>Please add your feedback in the below box</h6>
 		        <input type="text" height="200px" width=50% id= ${comment} >
+		        <input type="submit" id="submit_btn"/>
 		        </div>
 		        
 		    </div>
@@ -189,6 +190,20 @@ app.get('/test-db',function(req,res){
        } else{
            res.send(JSON.stringify(result.rows));
        }
+    });
+});
+
+app.post('/comment',function(req,res){
+   var username = req.body.username;
+   var password = req.body.password;
+   
+   
+    pool.query('INSERT INTO "article" (comment) VALUES ($1)',[comment], function(err,result){
+     if(err){
+           res.status(500).send(err.toString());
+       } else{
+           res.send('Your feebback updated Succesfully');
+       }   
     });
 });
 
