@@ -96,8 +96,8 @@ function crateTemplate (data){
 		        ${content}
 		        </div>
 		        <div>
-		        <h4>Pls. add your comments here</h4>
-		        <input type="text" id= ${comment}>
+		        <h6>Please add your feedback in the below box</h6>
+		        <input type="text" size='60px' id= ${comment} >
 		        </div>
 		        
 		    </div>
