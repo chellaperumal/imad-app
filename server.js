@@ -91,10 +91,11 @@ function crateTemplate (data){
 		            ${date.toDateString()}
 		        </div>
 		        <div>
-		        <h3>Pls. add your comments here</h3>
+		        
 		        ${content}
 		        </div>
 		        <div>
+		        <h3>Pls. add your comments here</h3>
 		        ${comment}
 		        </div>
 		        
