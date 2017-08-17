@@ -93,6 +93,10 @@ function crateTemplate (data){
 		        <div>
 		        ${content}
 		        </div>
+		        <div>
+		        ${comment}
+		        </div>
+		        
 		    </div>
 		    </body>
 		</html>
