@@ -62,7 +62,7 @@ function crateTemplate (data){
 		        
 		        <div>
 		        <h6>Please add your feedback in the below box</h6>
-		        <textarea rows="5" cols="75" type="text name="comment" id="sub_cmt"></textarea>
+		        <textarea rows="5" cols="75" type="text name="cmnt" id="cmnt"></textarea>
 		        <br>
 		        <input type="submit" id="sub_cmt"/>
 		        
@@ -160,20 +160,6 @@ app.get('/test-db',function(req,res){
     });
 });
 
-app.post('/comment',function(req,res){
-   var username = req.body.username;
-   var password = req.body.password;
-   
-   
-    pool.query('INSERT INTO "article" (comment) VALUES ($1)',[comment], function(err,result){
-     if(err){
-           res.status(500).send(err.toString());
-       } else{
-           res.send('Your feebback updated Succesfully');
-       }   
-    });
-});
-
 var counter = 0;
 app.get('/counter',function(req,res){
    counter = counter + 1;
@@ -187,6 +173,37 @@ app.get('/submit-name', function(req,res){
     res.send(JSON.stringify(names));
 });
 
+var submit = document.getElementById('sub_cmt');
+ submit.onclick = function(){
+     //Make Request
+      var request = new XMLHttpRequest();
+      
+     //Store the request
+    request.onreadystatechange = function(){
+        if(request.readyState === XMLHttpRequest.DONE){
+            if(request.status === 200){
+                var cmts = request.responseText;
+                cmts = JSON.parse(cmts);
+                var cmtary = '';
+                 for (var i=0;i< cmts.length; i++){
+                     cmtary += '<li>'+ cmts[i] + '</li>';
+                 }
+ 
+     //Render list
+     
+     var cmtul = document.getElementById('namelist');
+      cmtul.innerHTML = cmtary;
+            }
+        } 
+      //Not yet done
+    };
+     
+     //Make the request
+ var cmtInput = document.getElementById('cmnt');
+ var cmnt = cmtInput.value;
+ //request.open('GET','http://pondychellam.imad.hasura-app.io/articles/submit-name?name='+ name,true);
+ //request.send(null);
+ };
 
 app.get('/articles/:articleName', function (req, res) {
 // var articleName = req.params.articleName;
