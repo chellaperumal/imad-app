@@ -23,42 +23,6 @@ app.use(session({
     cookie: {maxAge: 1000*60*60*24*30}
 }));
 
-var articles = {
-'article-one': {
-	title: 'Article One | Chellaperumal',
-	heading: 'Article One',
-	date: 'Aug 04 2017',
-	content:`
-		<p>
-            This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
-        </p>
-        <p>
-            This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
-        </p>
-        <p>
-            This is the content for my Second article, though it is not big but Second start.This is the content for my Second article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start
-        
-        </p>`},
-        
-'article-two': {
-	title: 'Article Two | Chellaperumal',
-	heading: 'Article Two',
-	date: 'Aug 05 2017',
-	content:`
-		
-        <p>
-            This is the content for my Second article, though it is not big but Second start.This is the content for my Second article, though it is not big but first start.This is the content for my First article, though it is not big but first start.This is the content for my First article, though it is not big but first start.
-        </p>`},
-'article-three': {
-	title: 'Article Three | Chellaperumal',
-	heading: 'Article Three',
-	date: 'Aug 06 2017',
-	content:`
-	    <p>
-            To be crated by end of Aug'2017
-        </p>`}
-};
-
 
 function crateTemplate (data){
 		var title = data.title;
