@@ -65,7 +65,7 @@ function crateTemplate (data){
 		        <textarea rows="5" cols="75" type="text name="cmnt" id="cmnt"></textarea>
 		        <br>
 		        <input type="submit" id="sub_cmt"/>
-		        
+		        <ul id="cmntlist">
 		        </div>
 		        
 		    </div>
@@ -191,7 +191,7 @@ var subcmt = document.getElementById('sub_cmt');
  
      //Render list
      
-     var cmtul = document.getElementById('namelist');
+     var cmtul = document.getElementById('cmntlist');
       cmtul.innerHTML = cmtary;
             }
         } 
