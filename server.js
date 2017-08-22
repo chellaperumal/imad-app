@@ -201,8 +201,8 @@ var submit = document.getElementById('sub_cmt');
      //Make the request
  var cmtInput = document.getElementById('cmnt');
  var cmnt = cmtInput.value;
- //request.open('GET','http://pondychellam.imad.hasura-app.io/articles/submit-name?name='+ name,true);
- //request.send(null);
+ request.open('GET','http://pondychellam.imad.hasura-app.io/articles/:articleName?cmntcmnt='+ cmnt,true);
+ request.send(null);
  };
 
 app.get('/articles/:articleName', function (req, res) {
