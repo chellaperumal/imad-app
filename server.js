@@ -59,10 +59,11 @@ function crateTemplate (data){
 		        
 		        ${content}
 		        </div>
+		        
 		        <div>
 		        <h6>Please add your feedback in the below box</h6>
 		        <input type="text" height="200px"  id= ${comment} >
-		        <input type="submit" id="submit_btn"/>
+		        <input type="submit" id="sub_cmt"/>
 		        </div>
 		        
 		    </div>
