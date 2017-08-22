@@ -173,8 +173,8 @@ app.get('/submit-name', function(req,res){
     res.send(JSON.stringify(names));
 });
 
-var submit = document.getElementById('sub_cmt');
- submit.onclick = function(){
+var subcmt = document.getElementById('sub_cmt');
+ subcmt.onclick = function(){
      //Make Request
       var request = new XMLHttpRequest();
       
