@@ -43,7 +43,7 @@
             if(request.status === 200){
                 var cmts = request.responseText;
                 cmts = JSON.parse(cmts);
-                var cmtary = '';
+                var cmtary = [];
                  for (var i=0;i< cmts.length; i++){
                      cmtary += '<li>'+ cmts[i] + '</li>';
                  }
