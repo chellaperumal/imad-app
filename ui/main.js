@@ -32,8 +32,8 @@
  };
  
  
- var subcmt = document.getElementById('sub_cmt');
- subcmt.onclick = function(){
+ var submit = document.getElementById('sub_cmt');
+ submit.onclick = function(){
      //Make Request
       var request = new XMLHttpRequest();
       
