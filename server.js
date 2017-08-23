@@ -62,7 +62,7 @@ function crateTemplate (data){
 		        
 		        <div>
 		        <h6>Please add your feedback in the below box</h6>
-		        <textarea rows="5" cols="75" type="text name="cmnt" id="cmnt"></textarea>
+		        <input type=text name="cmnt" id="cmnt"/>
 		        <br>
 		        <input type="submit" name="subcmt" id='sub_cmt'/>
 		        <ul id="cmntlist"></ul>
