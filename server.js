@@ -191,7 +191,7 @@ app.get('/articles/:articleName', function (req, res) {
  });
 
 
-/*var submit = document.getElementById('sub_cmt');    
+var submit = document.getElementById('sub_cmt');    
  submit.onclick = function(){
      //Make Request
       var request = new XMLHttpRequest();
@@ -221,7 +221,7 @@ app.get('/articles/:articleName', function (req, res) {
  var cmnt = cmtInput.value;
  request.open('GET','http://pondychellam.imad.hasura-app.io/articles/:articleName?cmnt='+ cmnt,true);
  request.send(null);
- };*/
+ };
 
 
 app.get('/ui/style.css', function (req, res) {
