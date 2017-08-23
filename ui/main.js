@@ -60,6 +60,6 @@
      //Make the request
  var cmtInput = document.getElementById('cmnt');
  var cmnt = cmtInput.value;
- request.open('GET','http://pondychellam.imad.hasura-app.io/articles/:articleName/cmnt?='+ cmnt,true);
+ request.open('GET','http://pondychellam.imad.hasura-app.io/articles/:articleName?cmnt='+ cmnt,true);
  request.send(null);
  };
