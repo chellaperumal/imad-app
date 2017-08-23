@@ -31,3 +31,35 @@
  request.send(JSON.stringify({username: username, password: password}));
  };
  
+ 
+ var subcmt = document.getElementById('sub_cmt');
+ subcmt.onclick = function(){
+     //Make Request
+      var request = new XMLHttpRequest();
+      
+     //Store the request
+    request.onreadystatechange = function(){
+        if(request.readyState === XMLHttpRequest.DONE){
+            if(request.status === 200){
+                var cmts = request.responseText;
+                cmts = JSON.parse(cmts);
+                var cmtary = '';
+                 for (var i=0;i< cmts.length; i++){
+                     cmtary += '<li>'+ cmts[i] + '</li>';
+                 }
+ 
+     //Render list
+     
+     var ul = document.getElementById('cmntlist');
+      ul.innerHTML = cmtary;
+            }
+        } 
+      //Not yet done
+    };
+     
+     //Make the request
+ var cmtInput = document.getElementById('cmnt');
+ var cmnt = cmtInput.value;
+ request.open('GET','http://pondychellam.imad.hasura-app.io/articles/:articleName?cmnt='+ cmnt,true);
+ request.send(null);
+ };
