@@ -101,7 +101,9 @@ app.post('/create-user',function(req,res){
      if(err){
            res.status(500).send(err.toString());
        } else{
-           res.send('User Succesfully created: ' + username);
+           //res.send('User Succesfully created: ' + username);
+           res.setHeader('Content-type',application/json);
+           res.send(JSON.parse('{"message":"User Succesfully created"}'));
        }   
     });
 });
@@ -126,6 +128,8 @@ app.post('/login',function(req,res){
             req.session.auth = {userId: result.rows[0].id};   
             
             res.send('User Credentials are Correct');
+            res.setHeader('Content-type',application/json);
+            res.send(JSON.Parse('{"message":"User Credentials are Correct"}'));
            }else {
               res.send(403).send('Username or Password is invalid');
            }
