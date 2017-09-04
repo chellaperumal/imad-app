@@ -105,7 +105,7 @@ app.post('/create-user',function(req,res){
             res.setHeader('Content-Type', 'application/json');
            
             res.send(JSON.parse('{"message":"User successfully created"}') + username);
-       }   
+       }
     });
 });
 
