@@ -128,7 +128,7 @@ app.post('/login',function(req,res){
             req.session.auth = {userId: result.rows[0].id};   
             
             //res.send('User Credentials are Correct');
-            res.setHeader('Content-type: application/json');
+            res.setHeader('Content-type', application/json);
             res.send(JSON.Parse('{"message":"User Credentials are Correct"}'));
            }else {
               res.send(403).send('Username or Password is invalid');
