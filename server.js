@@ -132,7 +132,7 @@ app.post('/login',function(req,res){
             res.send(JSON.parse('{"message":"Credentials are Correct"}'));
            
            }else {
-              res.send(403).send('Username or Password is invalid');
+              res.send(403).send(err.toString());
            }
         }
        }
