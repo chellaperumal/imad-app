@@ -39,8 +39,8 @@
       
      //Store the request
     request.onreadystatechange = function(){
-        if(request.readyState === XMLHttpRequest.DONE){
-            if(request.status === 200){
+        if(request.readyState == XMLHttpRequest.DONE){
+            if(request.status == 200){
                 var cmts = request.responseText;
                 cmts = JSON.parse(cmts);
                 var cmtary = [];
