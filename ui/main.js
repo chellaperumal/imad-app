@@ -33,7 +33,7 @@
  
  
  var subcmt = document.getElementById('sub_cmt');
- sub_cmt.onclick = function(){
+ subcmt.onclick = function(){
      //Make Request
       var request = new XMLHttpRequest();
       
