@@ -71,7 +71,7 @@ function crateTemplate (data){
 		    </div>
 		    </body>
 		</html>
-;
+`;
 	return htmlTemplate;
 }
 
