@@ -42,7 +42,7 @@
         if(request.readyState === XMLHttpRequest.DONE){
             if(request.status === 200){
                 var cmts = ['comment1','comment2','comment3'];
-                cmts = JSON.parse(cmts);
+               // cmts = JSON.parse(cmts);
                 var cmtary = [];
                  for (var i=0;i< cmts.length; i++){
                      cmtary += '<li>'+ cmts[i] + '</li>';
