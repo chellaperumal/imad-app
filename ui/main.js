@@ -1,5 +1,5 @@
 
-function loadLoginForm(){
+function loadLoginForm() {
     var loginHtml = `
     <h3>Login / Register to unlock features</h3>
     <input type ="text" id="username" placeholder="Username"/>
@@ -7,13 +7,12 @@ function loadLoginForm(){
     <br/><br>
     <input type = "submit" id = "login_btn" value = "Login"/>
     <input type = "submit" id = "register_btn" value = "Register"/>
-    
     `;
     document.getElementById('login_area').innerHTML = loginHtml;
     
       // Submit username/password to login
     var submit = document.getElementById('login_btn');
-    submit.onclick = function(){
+    submit.onclick = function() {
         
           // Create a request object
         var request = new XMLHttpRequest();
@@ -48,38 +47,34 @@ function loadLoginForm(){
 
 };
 
-
- // Submit username/password to login
- 
- var submit = document.getElementById('submit_btn');
- submit.onclick = function(){
-     //Make Request
-      var request = new XMLHttpRequest();
+var register = documengt.getElementById('register_btn');
+register.onclick = function (){
+     // Create a request object
+     var request =  new XMLHttpRequest();
+     // Capture the response and store it in a variable
+        request.onreadystatechange = function(){
+            if(request.readystate === XMLHttpRequest.DONE){
+                if(request.status === 200){
+                    alert('User created Sucessfully');
+                    resgiste.value = 'Registered !';
+                }else {
+                    alert('Could not register the user');
+                    submit.value = 'Register';
+                }
       
-     //Store the request
-    request.onreadystatechange = function(){
-        if(request.readyState === XMLHttpRequest.DONE){
-            if(request.status === 200){
-                console.log('user logged in');
-                alert('Logged in Successfully');
-            } else if (request.status === 403){
-                alert('Username or Password is incorrect');
-            } else if (request.status === 500){
-                alert('Something went wrong in the server');
-            }
-        } 
-      //Not yet done
-    };
-     
-     //Make the request
- var username = document.getElementById('username').value;
- var password = document.getElementById('password').value;
- console.log(username);
- console.log(password);
- request.open('POST','http://pondychellam.imad.hasura-app.io/login',true);
- request.setRequestHeader('Content-Type', 'application/json');
- request.send(JSON.stringify({username: username, password: password}));
- };
- 
- 
- 
+    }
+   // Not done yet
+};
+// Make the request
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('POST', '/create-user', true);
+    request.setRequestHeader('Content-Type', 'application/json');
+     request.send(JSON.stringify({username:username, password:password}));
+    submit.value = 'Registering ....';
+};
+}
+
+
