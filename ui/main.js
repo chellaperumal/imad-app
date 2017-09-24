@@ -1,4 +1,37 @@
 
+function loadLoginForm(){
+    var loginHtml = `
+    <h3>Login / Register to unlock features</h3>
+    <input type ="text" id="username" placeholder="Username"/>
+    <input type ="passwrord" id="password"/>
+    <br/><br>
+    <input type = "submit" id = "login_btn" value = "Login"/>
+    <input type = "submit" id = "register_btn" value = "Register"/>
+    
+    `;
+    document.getElementById('login_area').innerHTML = loginHtml;
+    
+    var submit = documment.getElementById('login_btn');
+    submit.onclick = function(){
+        var request = new XMLHttpRequest();
+        request.onreadstatechange = function(){
+            if(request.readystate === XMLHttpRequest.DONE){
+                if(request.status === 200){
+                    submit.value = 'Success !';
+                }else if(request.status === 403) {
+                    submit.value = 'Invalid Credentials. Try again? ';
+                }else if(reques.status === 500){
+                    alert('Something went wrong on the server');
+                    submit.value = 'Login';
+                }else {
+                    alert('Something went wrong on the server');
+                    submit.value = 'Login';
+                }
+      loadLogin();          
+    }
+    //
+};
+
  // Submit username/password to login
  
  var submit = document.getElementById('submit_btn');
@@ -32,33 +65,4 @@
  };
  
  
- var submit = document.getElementById('sub_cmt');
- submit.onclick = function(){
-     //Make Request
-      var request = new XMLHttpRequest();
-      
-     //Store the request
-    request.onreadystatechange = function(){
-        if(request.readyState === XMLHttpRequest.DONE){
-            if(request.status === 200){
-                var cmts = ['comment1','comment2','comment3'];
-               // cmts = JSON.parse(cmts);
-                var cmtary = [];
-                 for (var i=0;i< cmts.length; i++){
-                     cmtary += '<li>'+ cmts[i] + '</li>';
-                 }
  
-     //Render list
-     
-     var ul = document.getElementById('cmntlist');
-      ul.innerHTML = cmtary;
-            }
-        } 
-      //Not yet done
-    };
-     
-     //Make the request
- var cmtInput = document.getElementById('cmnt');
- var cmnt = cmtInput.value;
- request.open('GET','http://pondychellam.imad.hasura-app.io/articles/:articleName/submit_cmnt?=cmnt'+ cmnt,true);
- request.send();
