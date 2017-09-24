@@ -19,18 +19,17 @@ var app = express();
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 app.use(session({
-    secret: 'soemRandomSecretValue',
+    secret: 'someRandomSecretValue',
     cookie: {maxAge: 1000*60*60*24*30}
 }));
 
 
-function crateTemplate (data){
+function createTemplate (data){
 		var title = data.title;
 		var date = data.date;
 		var heading = data.heading;
 		var content = data.content;
-        var comment = data.comment;
-        
+       
 		var htmlTemplate = `
 		<html>
 		    <head>
@@ -59,15 +58,15 @@ function crateTemplate (data){
 		        
 		        ${content}
 		        </div>
-		        
-		        <h6>Please add your feedback in the below box</h6>
-		        <input type="text" placeholder="comment" id="cmnt"></input>
-		        <br>
-		        <input type="submit" value="Submit" id='sub_cmt'></input>
-		        <ul id="cmntlist"></ul>
-		        
-		        
+		        <hr/>
+		        <h4>Comments</h4>
+		        <div id="comment_form">
+		        </div>
+		        <div id="comments">
+		        <center>Loading comments...</center>
+		        </div>
 		    </div>
+		    <script type="text/javascript" src="/ui/article.js"></script>
 		    </body>
 		</html>
 `;
@@ -78,12 +77,6 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'ui', 'index.html'));
 });
 
-app.get('/submit-cmnt/:cmnt',function(req,res){
-   var cmnt = req.params.cmnt;
-   
-   cmnt.push(cmt);
-   res.sent(JSON.stringify(cmnt));
-});
 
 function hash(input, salt){
     var hashed = crypto.pbkdf2Sync(input, salt, 10000, 512, 'sha512');
@@ -107,8 +100,8 @@ app.post('/create-user',function(req,res){
      if(err){
            res.status(500).send(err.toString());
        } else{
-           //res.send('User Succesfully created: ' + username);
-            res.setHeader('Content-Type', 'application/json');
+           res.send('User Succesfully created: ' + username);
+            //res.setHeader('Content-Type', 'application/json');
            
             res.send(JSON.parse('{"message":"User successfully created"}') + username);
        }
@@ -126,8 +119,8 @@ app.post('/login',function(req,res){
        } else{
            if(result.rows.length === 0){
               
-               res.setHeader('Content-Type', 'application/json');
-                res.send(403).send('Username or Password is invalid');
+              // res.setHeader('Content-Type', 'application/json');
+                res.status(403).send('Username or Password is invalid');
                //res.send(JSON.parse('{"message":"Username or Password is invalid"}'));
            
        } else{
@@ -138,13 +131,13 @@ app.post('/login',function(req,res){
             
             req.session.auth = {userId: result.rows[0].id};   
           
-            res.setHeader('Content-Type', 'application/json');
-            res.send(JSON.parse('{"message":"Credentials are Correct"}'));
-           
+            //res.setHeader('Content-Type', 'application/json');
+            //res.send(JSON.parse('{"message":"Credentials are Correct"}'));
+           res.send("Credentials are Correct");  
            }
            else 
            {
-              res.send(403).send("Username or Password is invalid");
+              res.status(403).send("Username or Password is invalid");
            }
         }
        }
@@ -155,10 +148,19 @@ app.post('/login',function(req,res){
 app.get('/check-login', function(req,res){
    
    if(req.session && req.session.auth && req.session.auth.userId){
-       res.send('You are logged in :' + req.session.auth.userId.toString());
-   }else{
-       res.send('You are not logged in');
+       
+       pool.query('SELECT * FROM "user" WHERE id = $1', [req.session.auth.userId], function (err,result) {
+           if (err) {
+               res.status(500).send(err.toString());
+           }else{
+               res.send(result.rows[0].username);
+           }
+          });
    }
+   else{
+       res.status(400).send('You are not logged in');
+   }
+      
 });
 
 app.get('/Logout',function(req,res){
