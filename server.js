@@ -163,12 +163,13 @@ app.get('/check-login', function(req,res){
       
 });
 
-app.get('/Logout',function(req,res){
+app.get('/logout',function(req,res){
    delete req.session.auth;
-    res.send('You are successfully logged out');
+    res.send('<html><body>Logged Out!<br/><br/><a href = "/">Back to Home</a></body></html>');
 });
 
 var pool = new Pool(config);
+
 app.get('/test-db',function(req,res){
     pool.query('SELECT * FROM test',function(err,result){
        if(err){
