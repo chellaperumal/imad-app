@@ -11,10 +11,15 @@ function loadLoginForm(){
     `;
     document.getElementById('login_area').innerHTML = loginHtml;
     
-    var submit = documment.getElementById('login_btn');
+      // Submit username/password to login
+    var submit = document.getElementById('login_btn');
     submit.onclick = function(){
+        
+          // Create a request object
         var request = new XMLHttpRequest();
-        request.onreadstatechange = function(){
+        
+      // Capture the response and store it in a variable
+        request.onreadystatechange = function(){
             if(request.readystate === XMLHttpRequest.DONE){
                 if(request.status === 200){
                     submit.value = 'Success !';
@@ -29,8 +34,20 @@ function loadLoginForm(){
                 }
       loadLogin();          
     }
-    //
+   // Not done yet
 };
+    // Make the request
+    var username = document.getElementById('username').value;
+    var password = document.getElementById('password').value;
+    console.log(username);
+    console.log(password);
+    request.open('POST', '/login',true);
+    request.setRequestHeader('Content-Type', 'application/json');
+    request.send(JSON.stringify({username:username, password:password}));
+    submit.value = 'Logging in....';
+
+};
+
 
  // Submit username/password to login
  
