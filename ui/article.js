@@ -4,10 +4,10 @@ var currentArticleTitle = window.location.pathname.split('/')[2];
 function loadCommentForm(){
     
     var commentFomrHtml = `
-    <h5> Summit a Comment</h5>
-    <textarea id = "comment_text" rows="5" cols="100" placeholder="Enter your comment here..."><textarea>
+    <h5> Submit a Comment</h5>
+    <textarea id= "comment_text" rows="5" cols="100" placeholder="Enter your comment here..."></textarea>
     <br/>
-    <input type ="submit" id="submit" value="Submit"/>
+    <input type= "submit" id="submit" value="Submit"/>
     <br/>
     `;
     document.getElementById('comment_form').innerHTML = commentFormHtml;
@@ -21,12 +21,12 @@ function loadCommentForm(){
         
           // Capture the response and store it in a variable
         request.onreadystatechange === function () {
-        if(request.readystate === XMLHttpRequest.DONE) {
+        if(request.readyState === XMLHttpRequest.DONE) {
              // Take some action
             if(request.status === 200){
                  // clear the form & reload all the comments
                 document.getElementById('comment_text').value = '';
-                loadcomments();
+                loadComments();
             }else{
                 alert('Error! could not submit comment');
             }
@@ -35,9 +35,9 @@ function loadCommentForm(){
     };
     
      // Make the request
-    var commnet = document.getElementById('comment_text').value;
+    var comment = document.getElementById('comment_text').value;
     request.open('POST','/submit-comment/' + currentArticleTitle, true);
-    request.setRequestHeader('Content-Type', 'application/JSON');
+    request.setRequestHeader('Content-Type', 'application/json');
     request.send(JSON.stringify({comment:comment}));
     submit.value = 'Submitting....';
     
@@ -47,8 +47,8 @@ function loadCommentForm(){
 
 function loadLogin(){
    var request = new XMLHttpRequest();
-    request.onreadystate === function(){
-        if(request.readystate === XMLHttpRequest.DONE){
+    request.onreadystatechange === function(){
+        if(request.readyState === XMLHttpRequest.DONE){
              if(request.status === 200){
                  loadCommentForm(this.responseText);
                  
@@ -71,7 +71,7 @@ function escapeHTML (text){
 function loadComments () {
      var request = new XMLHttpRequest();
         request.onreadystatechange === function () {
-        if(request.readystate === XMLHttpRequest.DONE) {
+        if(request.readyState === XMLHttpRequest.DONE) {
             var comments = document.getElementById('comments');
             if(request.status === 200){
                 var content = '';
@@ -80,7 +80,7 @@ function loadComments () {
                     var time = new Date(commentsData[i].timestamp);
                     content += `<div class = "comment">
                     <p>${escapeHTML(commentsData[i].comment)}</p>
-                    <div class = "commentor">
+                    <div class = "commenter">
                     ${commentsData[i].username} - ${time.toLocaleTimeString()} on ${time.toLocaleDateString()}
                     </div>
                     </div>`;
@@ -92,8 +92,8 @@ function loadComments () {
 }
 }
 };
-request.open('GET', '/get-comments' + currentArticleTitle,true);
-reques.send(null);
+request.open('GET', '/get-comments/' + currentArticleTitle,true);
+request.send(null);
 }
 
 
