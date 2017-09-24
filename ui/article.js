@@ -15,12 +15,12 @@ function loadCommentForm(){
     
         // Submit username/password to login
     var submit = document.getElementById('submit');
-    submit.onclick = function (){
+    submit.onclick = function () {
          // Create a request object
         var request = new XMLHttpRequest();
         
           // Capture the response and store it in a variable
-        request.onreadystate === function (){
+        request.onreadystatechange === function () {
         if(request.readystate === XMLHttpRequest.DONE) {
              // Take some action
             if(request.status === 200){
@@ -39,7 +39,7 @@ function loadCommentForm(){
     request.open('POST','/submit-comment/' + currentArticleTitle, true);
     request.setRequestHeader('Content-Type', 'application/JSON');
     request.send(JSON.stringify({comment:comment}));
-    submit.value = "Submitting....;
+    submit.value = 'Submitting....';
     
     };
 }
@@ -57,4 +57,8 @@ function loadLogin(){
 };
 request.open('GET', '/check-login',true);
 request.send(null);
+}
+
+function escapeHTML (text){
+    
 }
