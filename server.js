@@ -190,6 +190,47 @@ app.get('/submit-name', function(req,res){
     res.send(JSON.stringify(names));
 });
 
+app.get('/get-comments/:articleName', function (req,res){
+   pool.query('SELECT comment.*,"user".username FROM article, comment, "user" WHERE article.titlel = $1 AND article.id = comment.article_id AND comment.user_id = "user".id ORDER BY comment.timestamp DESC', [req.params.articleName],function (err,res){
+      if(err){
+          res.status(500).send(err.toString());
+      }else{
+          res.send(JSON.stringify(result.rows));
+      }
+         });
+   
+});
+
+
+app.post('/submit-comment/:articleName',function (req,res){
+   
+   if(req.session && req.session.auth && req.session.auth.userId){
+       pool.query('SELECT * FROM article WHERE title = $1', [req.params.articleName], function (err, result){
+         if(err){
+             res.status(500).send(err.toString());
+         }  else{
+             if(result.rows.length === 0){
+                 res.status(400).send('Article Not found');
+            }else{
+                var articleId = result.rows[0].id;
+                pool.query("INSERT INTO comment (comment,articleid, user_id') VALUES ($1,$2,$3)",[req.body.comment,articleId,req.session.auth.userId],function(err,result){
+                    if(err){
+                        res.status(500).send(err.toString());
+                    }else{
+                        res.status(200).send("Comment Inserted!")
+                    }
+                });
+            }
+         }
+       });
+   }
+   else{
+    res.status(403).send('Only logged in users can commnet');    
+   }
+   
+   
+});
+
 
 app.get('/articles/:articleName', function (req, res) {
  //var articleName = req.params.articleName;
@@ -209,41 +250,9 @@ app.get('/articles/:articleName', function (req, res) {
             res.send(crateTemplate(articleData));
         }
     }
- });
+    });
  });
 
-
-/*var submit = document.getElementById('sub_cmt');    
- submit.onclick = function(){
-     //Make Request
-      var request = new XMLHttpRequest();
-      
-     //Store the request
-    request.onreadystatechange = function(){
-        if(request.readyState === XMLHttpRequest.DONE){
-            if(request.status === 200){
-                var cmts = request.responseText;
-                cmts = JSON.parse(cmts);
-                var cmtary = '';
-                 for (var i=0;i< cmts.length; i++){
-                     cmtary += '<li>'+ cmts[i] + '</li>';
-                 }
- 
-     //Render list
-     
-     var ul = document.getElementById('cmntlist');
-      ul.innerHTML = cmtary;
-            }
-        } 
-      //Not yet done
-    };
-     
-     //Make the request
- var cmtInput = document.getElementById('cmnt');
- var cmnt = cmtInput.value;
- request.open('GET','http://pondychellam.imad.hasura-app.io/articles/:articleName?cmnt='+ cmnt,true);
- request.send(null);
- };*/
 
 
 app.get('/ui/style.css', function (req, res) {
