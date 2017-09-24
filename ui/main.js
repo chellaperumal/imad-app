@@ -3,7 +3,7 @@ function loadLoginForm() {
     var loginHtml = `
     <h3>Login / Register to unlock features</h3>
     <input type ="text" id="username" placeholder="Username"/>
-    <input type ="passwrord" id="password"/>
+    <input type ="password" id="password"/>
     <br/><br>
     <input type = "submit" id = "login_btn" value = "Login"/>
     <input type = "submit" id = "register_btn" value = "Register"/>
@@ -19,12 +19,12 @@ function loadLoginForm() {
         
       // Capture the response and store it in a variable
         request.onreadystatechange = function(){
-            if(request.readystate === XMLHttpRequest.DONE){
+            if(request.readyState === XMLHttpRequest.DONE){
                 if(request.status === 200){
                     submit.value = 'Success !';
                 }else if(request.status === 403) {
                     submit.value = 'Invalid Credentials. Try again? ';
-                }else if(reques.status === 500){
+                }else if(request.status === 500){
                     alert('Something went wrong on the server');
                     submit.value = 'Login';
                 }else {
@@ -53,13 +53,13 @@ register.onclick = function (){
      var request =  new XMLHttpRequest();
      // Capture the response and store it in a variable
         request.onreadystatechange = function(){
-            if(request.readystate === XMLHttpRequest.DONE){
+            if(request.readyState === XMLHttpRequest.DONE){
                 if(request.status === 200){
                     alert('User created Sucessfully');
-                    resgiste.value = 'Registered !';
+                    register.value = 'Registered !';
                 }else {
                     alert('Could not register the user');
-                    submit.value = 'Register';
+                    register.value = 'Register';
                 }
       
     }
@@ -73,7 +73,7 @@ register.onclick = function (){
     request.open('POST', '/create-user', true);
     request.setRequestHeader('Content-Type', 'application/json');
      request.send(JSON.stringify({username:username, password:password}));
-    submit.value = 'Registering ....';
+    register.value = 'Registering ....';
 };
 }
 
@@ -90,7 +90,7 @@ function loadLogin (){
     // Check if the user is already logged in
     var request = new XMLHttpRequest();
     request.onreadystatechange = function(){
-    if(request.readystate === XMLHttpRequest.DONE){
+    if(request.readyState === XMLHttpRequest.DONE){
         if(request.status === 200){
         loadLoggedInUser(this.responseText);
         }
@@ -101,22 +101,22 @@ function loadLogin (){
     }
     };
     request.open('GET', '/check-login', true);
-    request.send();
+    request.send(null);
 }
 
 function loadArticles () {
      // Check if the user is already logged in
       var request = new XMLHttpRequest();
     request.onreadystatechange = function(){
-    if(request.readystate === XMLHttpRequest.DONE){
+    if(request.readyState === XMLHttpRequest.DONE){
         var articles = document.getElementById('articles');
         if(request.status === 200){
             var content = '<ul>';
-            var articleData = JSON.parse(this.responeText);
+            var articleData = JSON.parse(this.responseText);
             for (var i=0; i< articleData.length; i++) {
                 content += `<li>
                 <a href = "/articles/${articleData[i].title}">${articleData[i].heading}</a>
-                (${articleData[i].data.split('T')[0]})</li>`;
+                (${articleData[i].date.split('T')[0]})</li>`;
             }
      content += "</ul>"
      articles.innerHTML = content;
