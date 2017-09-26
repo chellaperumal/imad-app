@@ -1,6 +1,5 @@
 body {
     font-family: sans-serif;
-    background-color: lightgrey;
     margin-top: 60px;
 }
 
@@ -28,7 +27,7 @@ body {
     padding-left: 20px;
     padding-right: 20px;
 }
-.comments{
+.comment{
     margin-left: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
@@ -41,7 +40,7 @@ body {
     
 }
 
-#comment_form{
+#comment_form {
      margin-left: 10px;
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
