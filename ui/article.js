@@ -83,11 +83,11 @@ function loadComments () {
                     </div>`;
                 }
             comments.innerHTML = content;
-}else{
+}   else {
     comments.innerHTML('Oops! could not load comments');
     
-}
-}
+        }
+    }
 };
 request.open('GET', '/get-comments/' + currentArticleTitle,true);
 request.send(null);
