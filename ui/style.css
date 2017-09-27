@@ -7,10 +7,6 @@ body {
     text-align: center;
 }
 
-.div {
-display: block;
-color: blue;
-}
 
 .text-big {
     font-size: 300%;
@@ -25,7 +21,7 @@ color: blue;
 }
 
 .h3{
-    color:blue;
+    color:#4a4a4a;
     
 }
 .container{
