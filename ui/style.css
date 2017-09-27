@@ -1,4 +1,4 @@
-.body {
+body {
     font-family: sans-serif;
     background-color: WhiteSmoke;
     margin-top: 60px;
@@ -25,6 +25,10 @@ color: blue;
     height: 200px;
 }
 
+.h3{
+    color:blue;
+    
+}
 .container{
     max-width: 800px;
     margin: 0 auto;
